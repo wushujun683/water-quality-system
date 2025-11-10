@@ -1,0 +1,129 @@
+{% extends "layout.html" %}
+
+{% block title %}水质健康评分 - 水质监测系统{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/health_calculator.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="health-container">
+        <!-- 页面头部 -->
+        <div class="health-header">
+            <h1><i class="fas fa-heartbeat"></i> 水质健康评分系统</h1>
+            <p class="health-subtitle">专业水质评估与健康分析</p>
+        </div>
+
+        <!-- 计算器主体 -->
+        <div class="health-calculator">
+            <div class="calculator-header">
+                <h3><i class="fas fa-calculator"></i> 水质参数输入</h3>
+                <p>输入水质监测数据，获取专业健康评分</p>
+            </div>
+
+            <div class="calculator-form">
+                <div class="input-grid">
+                    <!-- 浊度 -->
+                    <div class="input-group">
+                        <label for="turbidity-input">
+                            <i class="fas fa-water"></i> 浊度 (NTU)
+                        </label>
+                        <input type="number" id="turbidity-input" step="0.1" placeholder="输入浊度值">
+                        <div class="input-hint">正常范围: 0-5 NTU | 权重: 25%</div>
+                    </div>
+
+                    <!-- pH值 -->
+                    <div class="input-group">
+                        <label for="ph-input">
+                            <i class="fas fa-vial"></i> pH值
+                        </label>
+                        <input type="number" id="ph-input" step="0.1" placeholder="输入pH值">
+                        <div class="input-hint">正常范围: 6.5-8.5 | 权重: 20%</div>
+                    </div>
+
+                    <!-- 溶解氧 -->
+                    <div class="input-group">
+                        <label for="oxygen-input">
+                            <i class="fas fa-wind"></i> 溶解氧 (mg/L)
+                        </label>
+                        <input type="number" id="dissolved_oxygen-input" step="0.1" placeholder="输入溶解氧">
+                        <div class="input-hint">正常范围: 5-10 mg/L | 权重: 25%</div>
+                    </div>
+
+                    <!-- 温度 -->
+                    <div class="input-group">
+                        <label for="temperature-input">
+                            <i class="fas fa-thermometer-half"></i> 温度 (°C)
+                        </label>
+                        <input type="number" id="temperature-input" step="0.1" placeholder="输入温度">
+                        <div class="input-hint">正常范围: 15-28°C | 权重: 15%</div>
+                    </div>
+
+                    <!-- 叶绿素 -->
+                    <div class="input-group">
+                        <label for="chlorophyll-input">
+                            <i class="fas fa-leaf"></i> 叶绿素 (μg/L)
+                        </label>
+                        <input type="number" id="chlorophyll-input" step="0.1" placeholder="输入叶绿素">
+                        <div class="input-hint">正常范围: 0-3 μg/L | 权重: 10%</div>
+                    </div>
+
+                    <!-- 盐度 -->
+                    <div class="input-group">
+                        <label for="salinity-input">
+                            <i class="fas fa-tint"></i> 盐度 (PSU)
+                        </label>
+                        <input type="number" id="salinity-input" step="0.01" placeholder="输入盐度">
+                        <div class="input-hint">正常范围: 30-40 PSU | 权重: 5%</div>
+                    </div>
+                </div>
+
+                <div class="calculator-actions">
+                    <button class="btn-calculate" onclick="calculateHealthScore()">
+                        <i class="fas fa-calculator"></i> 计算健康评分
+                    </button>
+                    <button class="btn-reset" onclick="resetCalculator()">
+                        <i class="fas fa-redo"></i> 重置输入
+                    </button>
+                    <button class="btn-sample" onclick="fillSampleData()">
+                        <i class="fas fa-flask"></i> 填充示例数据
+                    </button>
+                </div>
+            </div>
+
+            <!-- 结果显示区域 -->
+            <div class="result-panel" id="result-panel">
+                <div class="score-display">
+                    <div class="score-circle" id="score-circle">
+                        <span class="score-value" id="score-value">0</span>
+                        <span class="score-label">综合评分</span>
+                    </div>
+                    <div class="score-details">
+                        <h3 id="health-level">水质健康等级</h3>
+                        <p id="health-description" class="health-description">等待计算...</p>
+
+                        <div class="parameter-scores" id="parameter-scores">
+                            <!-- 参数得分动态生成 -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="health-analysis">
+                    <h4><i class="fas fa-chart-line"></i> 详细分析报告</h4>
+                    <div class="analysis-content" id="analysis-content">
+                        <p>请输入水质参数并点击计算按钮获取分析报告。</p>
+                    </div>
+                </div>
+
+                <div class="improvement-suggestions" id="improvement-suggestions">
+                    <!-- 改善建议动态生成 -->
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='js/health_calculator.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/health_calculator.css') }}">
+{% endblock %}

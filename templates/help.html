@@ -1,0 +1,158 @@
+{% extends "layout.html" %}
+
+{% block title %}系统帮助 - 水质监测系统{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/help.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="help-container">
+        <!-- 页面头部 -->
+        <div class="help-header">
+            <h1><i class="fas fa-question-circle"></i> 系统使用指南</h1>
+            <p class="help-subtitle">快速了解水质监测系统的各项功能</p>
+        </div>
+
+        <!-- 功能模块介绍 -->
+        <div class="help-sections">
+            <!-- 水质分析 -->
+            <div class="help-section">
+                <div class="section-icon">
+                    <i class="fas fa-tachometer-alt"></i>
+                </div>
+                <div class="section-content">
+                    <h3>水质分析看板</h3>
+                    <div class="help-content">
+                        <p><strong>主要功能：</strong>实时查看各水质参数监测数据和历史趋势</p>
+                        <p><strong>使用方式：</strong></p>
+                        <ul>
+                            <li>系统自动展示最新监测数据</li>
+                            <li>通过图表查看参数变化趋势</li>
+                            <li>支持多参数对比分析</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 预警监控 -->
+            <div class="help-section">
+                <div class="section-icon">
+                    <i class="fas fa-bell"></i>
+                </div>
+                <div class="section-content">
+                    <h3>预警监控中心</h3>
+                    <div class="help-content">
+                        <p><strong>主要功能：</strong>水质异常预警和告警管理</p>
+                        <p><strong>使用方式：</strong></p>
+                        <ul>
+                            <li>查看当前活跃预警信息</li>
+                            <li>使用时间筛选查询历史预警记录</li>
+                            <li>了解预警级别和处理状态</li>
+                            <li>关注预警统计分析图表</li>
+                        </ul>
+                        <p><strong>预警级别：</strong></p>
+                        <div class="alert-levels">
+                            <span class="level critical">严重预警</span>
+                            <span class="level warning">警告预警</span>
+                            <span class="level attention">关注预警</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 健康评分 -->
+            <div class="help-section">
+                <div class="section-icon">
+                    <i class="fas fa-heartbeat"></i>
+                </div>
+                <div class="section-content">
+                    <h3>水质健康评分</h3>
+                    <div class="help-content">
+                        <p><strong>主要功能：</strong>综合评估水质健康状况，提供改善建议</p>
+                        <p><strong>使用方式：</strong></p>
+                        <ul>
+                            <li>输入水质参数获取实时评分</li>
+                            <li>查看各参数得分详情和分析</li>
+                            <li>获取针对性的改善建议和优化方案</li>
+                            <li>使用示例数据快速体验功能</li>
+                        </ul>
+                        <p><strong>评分参数：</strong>浊度、pH值、溶解氧、温度、叶绿素、盐度</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 智能预测 -->
+            <div class="help-section">
+                <div class="section-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="section-content">
+                    <h3>智能预测分析</h3>
+                    <div class="help-content">
+                        <p><strong>主要功能：</strong>水质变化趋势预测和智能分析</p>
+                        <p><strong>使用方式：</strong></p>
+                        <ul>
+                            <li>基于历史数据进行趋势分析</li>
+                            <li>预测未来水质变化走向</li>
+                            <li>识别异常模式和规律</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 快速操作指南 -->
+        <div class="quick-guide">
+            <div class="guide-header">
+                <h3><i class="fas fa-lightbulb"></i> 快速操作指南</h3>
+                <p>掌握这些技巧，让您使用更高效</p>
+            </div>
+            <div class="guide-items">
+                <div class="guide-item">
+                    <div class="guide-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="guide-text">
+                        <h4>数据查询技巧</h4>
+                        <p>使用时间筛选功能查看特定时间段数据，支持按日、月、年多维度分析</p>
+                    </div>
+                </div>
+
+                <div class="guide-item">
+                    <div class="guide-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <div class="guide-text">
+                        <h4>预警关注重点</h4>
+                        <p>重点关注"严重"和"警告"级别预警，及时采取相应处理措施</p>
+                    </div>
+                </div>
+
+                <div class="guide-item">
+                    <div class="guide-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <div class="guide-text">
+                        <h4>定期健康评估</h4>
+                        <p>建议每周使用评分系统评估水质状况，跟踪改善效果</p>
+                    </div>
+                </div>
+
+
+        <!-- 技术支持 -->
+        <div class="support-section">
+            <div class="support-content">
+                <h3><i class="fas fa-life-ring"></i> 需要更多帮助？</h3>
+                <p>如果您在使用过程中遇到问题或需要技术支持，请联系系统管理员。</p>
+                <div class="contact-info">
+                    <p><i class="fas fa-envelope"></i> 邮箱：admin@water-quality.com</p>
+                    <p><i class="fas fa-phone"></i> 电话：400-123-4567</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/help.css') }}">
+{% endblock %}

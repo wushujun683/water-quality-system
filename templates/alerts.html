@@ -1,0 +1,122 @@
+{% extends "layout.html" %}
+
+{% block title %}预警监控中心 - 水质监测系统{% endblock %}
+
+{% block content %}
+    <div class="alerts-container">
+        <!-- 页面标题 -->
+        <div class="alerts-header">
+            <h1><i class="fas fa-bell"></i> 预警监控中心</h1>
+            <p class="alerts-subtitle">实时异常检测与预警管理</p>
+        </div>
+
+        <!-- 新增：预警概览卡片 -->
+        <div class="alert-overview-grid">
+            <div class="alert-card critical">
+                <div class="alert-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="alert-info">
+                    <h3>严重预警</h3>
+                    <div class="alert-count" id="critical-count">0</div>
+                    <div class="alert-trend">需要立即处理</div>
+                </div>
+            </div>
+
+            <div class="alert-card warning">
+                <div class="alert-icon">
+                    <i class="fas fa-exclamation-circle"></i>
+                </div>
+                <div class="alert-info">
+                    <h3>警告预警</h3>
+                    <div class="alert-count" id="warning-count">0</div>
+                    <div class="alert-trend">需要关注</div>
+                </div>
+            </div>
+
+            <div class="alert-card attention">
+                <div class="alert-icon">
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <div class="alert-info">
+                    <h3>关注预警</h3>
+                    <div class="alert-count" id="attention-count">0</div>
+                    <div class="alert-trend">持续监控</div>
+                </div>
+            </div>
+
+            <div class="alert-card resolved">
+                <div class="alert-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="alert-info">
+                    <h3>已处理预警</h3>
+                    <div class="alert-count" id="resolved-count">0</div>
+                    <div class="alert-trend">历史记录</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 主要内容区域 -->
+        <div class="alerts-content">
+            <!-- 实时预警列表 -->
+            <div class="alerts-panel">
+                <div class="panel-header">
+                    <h3><i class="fas fa-list"></i> 实时预警列表</h3>
+                    <div class="panel-actions">
+                        <!-- 时间筛选控件 -->
+                        <div class="filter-controls">
+                            <div class="date-filter">
+                                <input type="date" id="start-date" class="date-input">
+                                <span class="date-separator">至</span>
+                                <input type="date" id="end-date" class="date-input">
+                                <button class="btn-filter" onclick="filterAlerts()">
+                                    <i class="fas fa-search"></i> 查询
+                                </button>
+                                <button class="btn-reset" onclick="resetFilter()">
+                                    <i class="fas fa-redo"></i> 重置
+                                </button>
+                            </div>
+                        </div>
+                        <button class="btn-refresh" onclick="refreshAlerts()">
+                            <i class="fas fa-sync-alt"></i> 刷新
+                        </button>
+                    </div>
+                </div>
+                <div class="alerts-list" id="alerts-list">
+                    <div class="loading-alerts">加载预警数据中...</div>
+                </div>
+            </div>
+
+            <!-- 预警统计与分析 -->
+            <div class="analytics-panel">
+                <div class="panel-header">
+                    <h3><i class="fas fa-chart-bar"></i> 预警统计分析</h3>
+                </div>
+                <div class="analytics-content">
+                    <div class="chart-container">
+                        <div id="alert-trend-chart" style="width: 100%; height: 300px;"></div>
+                    </div>
+                    <div class="chart-container">
+                        <div id="parameter-distribution-chart" style="width: 100%; height: 300px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 预警规则管理 -->
+        <div class="rules-panel">
+            <div class="panel-header">
+                <h3><i class="fas fa-cog"></i> 预警规则管理</h3>
+            </div>
+            <div class="rules-content" id="rules-content">
+                <!-- 规则内容由JavaScript动态生成 -->
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='js/alerts.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/alerts.css') }}">
+{% endblock %}

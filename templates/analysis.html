@@ -1,0 +1,129 @@
+{% extends "layout.html" %}
+
+{% block title %}水质分析中心 - 水质监测系统{% endblock %}
+
+{% block content %}
+    <div class="analysis-container">
+        <!-- 页面标题 -->
+        <div class="analysis-header">
+            <h1><i class="fas fa-water"></i> 水质分析中心</h1>
+            <p class="analysis-subtitle">多维数据分析与可视化</p>
+        </div>
+
+        <!-- 关键指标卡片 -->
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-icon" style="background: #e74a3b;">
+                    <i class="fas fa-thermometer-half"></i>
+                </div>
+                <div class="metric-info">
+                    <h3>平均温度</h3>
+                    <div class="metric-value" id="avg-temperature">-- °C</div>
+                    <div class="metric-trend" id="temp-trend">--</div>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-icon" style="background: #4e73df;">
+                    <i class="fas fa-wind"></i>
+                </div>
+                <div class="metric-info">
+                    <h3>溶解氧含量</h3>
+                    <div class="metric-value" id="avg-oxygen">-- mg/L</div>
+                    <div class="metric-trend" id="oxygen-trend">--</div>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-icon" style="background: #1cc88a;">
+                    <i class="fas fa-vial"></i>
+                </div>
+                <div class="metric-info">
+                    <h3>pH平衡</h3>
+                    <div class="metric-value" id="avg-ph">--</div>
+                    <div class="metric-trend" id="ph-trend">--</div>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-icon" style="background: #f6c23e;">
+                    <i class="fas fa-tint"></i>
+                </div>
+                <div class="metric-info">
+                    <h3>数据总量</h3>
+                    <div class="metric-value" id="total-records">--</div>
+                    <div class="metric-trend">条记录</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 标签页导航 -->
+        <div class="tab-nav">
+            <button class="tab-btn active" data-tab="trend-tab">
+                <i class="fas fa-chart-line"></i> 时间趋势
+            </button>
+            <button class="tab-btn" data-tab="correlation-tab">
+                <i class="fas fa-project-diagram"></i> 相关性分析
+            </button>
+            <button class="tab-btn" data-tab="distribution-tab">
+                <i class="fas fa-chart-bar"></i> 分布统计
+            </button>
+            <button class="tab-btn" data-tab="calendar-tab">
+                <i class="fas fa-calendar-alt"></i> 温度分布
+            </button>
+        </div>
+
+        <!-- 标签页内容 -->
+        <div class="tab-content">
+            <!-- 时间趋势标签页 -->
+            <div id="trend-tab" class="tab-pane active">
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3><i class="fas fa-chart-line"></i> 水质时间趋势</h3>
+                        <div>
+                            <select class="form-select-sm" id="trend-granularity">
+                                <option value="monthly">月视图</option>
+                                <option value="daily">日视图</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="trend-chart" class="chart-container" style="width: 100%; height: 500px;"></div>
+                </div>
+            </div>
+
+            <!-- 相关性分析标签页 -->
+            <div id="correlation-tab" class="tab-pane">
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3><i class="fas fa-project-diagram"></i> 参数相关性分析</h3>
+                    </div>
+                    <div id="correlation-chart" class="chart-container" style="width: 100%; height: 500px;"></div>
+                </div>
+            </div>
+
+            <!-- 分布统计标签页 -->
+            <div id="distribution-tab" class="tab-pane">
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3><i class="fas fa-chart-bar"></i> 水质参数分布统计</h3>
+                    </div>
+                    <div id="distribution-chart" class="chart-container" style="width: 100%; height: 500px;"></div>
+                </div>
+            </div>
+
+            <!-- 温度分布标签页 -->
+            <div id="calendar-tab" class="tab-pane">
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3><i class="fas fa-calendar-alt"></i> 月度平均温度趋势</h3>
+                    </div>
+                    <div id="calendar-chart" class="chart-container" style="width: 100%; height: 500px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='js/analysis.js') }}"></script>
+{% endblock %}

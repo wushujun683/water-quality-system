@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>水质监测系统 - 控制台</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+<div class="dashboard-container">
+    <!-- 欢迎横幅 -->
+    <div class="welcome-banner">
+        <h1>欢迎使用水质监测系统</h1>
+        <p class="subtitle">当前系统运行正常，所有监测点数据更新及时</p>
+    </div>
+
+    <!-- 主要内容区域 - 左右布局 -->
+    <div class="main-content">
+        <!-- 左侧：快速导航 -->
+        <div class="quick-nav">
+            <h3 class="section-title">
+                <i class="fas fa-compass"></i> 快速导航
+            </h3>
+            <div class="nav-buttons">
+                <a href="{{ url_for('analysis_center') }}" class="nav-button">
+                    <div class="nav-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="nav-text">
+                        <div class="title">水质分析</div>
+                        <div class="desc">查看详细参数与趋势图表</div>
+                    </div>
+                </a>
+
+                <a href="{{ url_for('prediction_center') }}" class="nav-button">
+                    <div class="nav-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="nav-text">
+                        <div class="title">智能预测</div>
+                        <div class="desc">水质变化趋势预测分析</div>
+                    </div>
+                </a>
+
+                <a href="{{ url_for('alerts_center') }}" class="nav-button">
+                    <div class="nav-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <div class="nav-text">
+                        <div class="title">预警监控</div>
+                        <div class="desc">管理预警规则和通知</div>
+                    </div>
+                </a>
+
+                <a href="{{ url_for('health_calculator') }}" class="nav-button">
+                    <div class="nav-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <div class="nav-text">
+                        <div class="title">健康评分</div>
+                        <div class="desc">综合评估水质健康状况</div>
+                    </div>
+                </a>
+
+                <a href="{{ url_for('help_page') }}" class="nav-button">
+                    <div class="nav-icon">
+                        <i class="fas fa-question-circle"></i>
+                    </div>
+                    <div class="nav-text">
+                        <div class="title">系统帮助</div>
+                        <div class="desc">使用指南和技术支持</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- 右侧：数据流 -->
+        <div class="data-stream-section">
+            <div class="stream-header">
+                <h3 class="stream-title">
+                    <i class="fas fa-wave-square"></i> 实时数据流
+                </h3>
+                <div class="stream-controls">
+                    <button class="control-btn" onclick="toggleDataStream()">
+                        <i class="fas fa-pause"></i> 暂停
+                    </button>
+                    <button class="control-btn" onclick="refreshDataStream()">
+                        <i class="fas fa-sync-alt"></i> 刷新
+                    </button>
+                </div>
+            </div>
+
+            <div class="stream-content">
+                <div class="data-stream" id="dataStream">
+                    <!-- 数据流内容由JavaScript动态生成 -->
+                </div>
+            </div>
+
+            <div class="stream-stats">
+                <div class="stat-item">
+                    <div class="stat-value" id="totalRecords">0</div>
+                    <div class="stat-label">总记录数</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="latestUpdate">--</div>
+                    <div class="stat-label">最新更新</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="dataStatus">离线</div>
+                    <div class="stat-label">数据状态</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>
