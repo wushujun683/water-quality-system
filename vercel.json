@@ -5,10 +5,5 @@
       "src": "/(.*)",
       "dest": "app.py"
     }
-  ],
-  "functions": {
-    "**/*.py": {
-      "runtime": "python@3.10"
-    }
-  }
+  ]
 }
